@@ -31,6 +31,8 @@ _C.INPUT.PADDING = 10
 _C.DATASETS = CN()
 # List of the dataset names for training, as present in paths_catalog.py
 _C.DATASETS.NAMES = ('Market1501')
+# Setup storage directroy for dataset
+_C.DATASETS.STORE_DIR = ('./datasets')
 
 # -----------------------------------------------------------------------------
 # DataLoader

@@ -37,4 +37,4 @@ TEST:
   IMS_PER_BATCH: 256
   WEIGHT: "path"
 
-OUTPUT_DIR: "./Checkpoints/Market1501/Softmax_Triplet_BS128_384x128"
+OUTPUT_DIR: "./checkpoints/Market1501/Softmax_Triplet_BS128_384x128"

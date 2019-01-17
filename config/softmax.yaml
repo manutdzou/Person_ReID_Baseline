@@ -34,4 +34,4 @@ SOLVER:
 TEST:
   IMS_PER_BATCH: 256
 
-OUTPUT_DIR: "./Checkpoints/Market1501/Softmax_BS64_384x128"
+OUTPUT_DIR: "./checkpoints/Market1501/Softmax_BS64_384x128"
