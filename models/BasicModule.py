@@ -26,3 +26,4 @@ class BasicModule(t.nn.Module):
         if not os.path.exists(save_path):
             os.makedirs(save_path)
         t.save(self.cuda().state_dict(),os.path.join(save_path,save_filename )
+        print('Model:'+ save_filename+ ' saves successfully' )
