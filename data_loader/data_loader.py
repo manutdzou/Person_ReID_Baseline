@@ -1,6 +1,6 @@
+import torch
 from torch.utils.data import DataLoader
 from .transforms import transforms
-from .collate_batch import train_collate_fn, val_collate_fn
 from .datasets import init_dataset, ImageDataset
 from .samplers import RandomIdentitySampler
 
@@ -8,7 +8,7 @@ def data_loader(cfg):
     train_transforms = transforms(cfg, is_train=True)
     val_transforms = transforms(cfg, is_train=False)
     num_workers = cfg.DATALOADER.NUM_WORKERS
-    dataset = init_dataset(cfg.DATASETS.NAMES)
+    dataset = init_dataset(cfg)
     num_classes = dataset.num_train_pids
     train_set = ImageDataset(dataset.train, train_transforms)
     if cfg.DATALOADER.SAMPLER == 'softmax':
@@ -29,3 +29,12 @@ def data_loader(cfg):
         collate_fn=val_collate_fn
     )
     return train_loader, val_loader, len(dataset.query), num_classes
+
+def train_collate_fn(batch):
+    imgs, pids, _, _, = zip(*batch)
+    pids = torch.tensor(pids, dtype=torch.int64)
+    return torch.stack(imgs, dim=0), pids
+
+def val_collate_fn(batch):
+    imgs, pids, camids, _ = zip(*batch)
+    return torch.stack(imgs, dim=0), pids, camids
