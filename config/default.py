@@ -5,7 +5,7 @@ _C = CN()
 
 _C.MODEL = CN()
 _C.MODEL.DEVICE = "cuda"
-_C.MODEL.NAME = 'resnet50'
+_C.MODEL.NAME = 'ResNet50'
 _C.MODEL.LAST_STRIDE = 1
 _C.MODEL.PRETRAIN_PATH = ''
 # -----------------------------------------------------------------------------
@@ -66,6 +66,7 @@ _C.SOLVER.WEIGHT_DECAY_BIAS = 0.
 _C.SOLVER.GAMMA = 0.1
 _C.SOLVER.STEPS = (30, 55)
 
+_C.SOLVER.WARMUP = True
 _C.SOLVER.WARMUP_FACTOR = 1.0 / 3
 _C.SOLVER.WARMUP_ITERS = 500
 _C.SOLVER.WARMUP_METHOD = "linear"
