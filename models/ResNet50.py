@@ -30,11 +30,14 @@ class ResNet50(BasicModule):
         super(ResNet50, self).__init__()
         self.model_name = 'resnet50'
         self.base = models.resnet50(pretrained=True)
-        self.base.avgpool = nn.AdaptiveAvgPool2d(1)
-        # self.base.avgpool = nn.AdaptiveMaxPool2d(1)
+        self.base.avgpool = nn.AdaptiveAvgPool2d((1,1))
+        # self.base.avgpool = nn.AdaptiveMaxPool2d((1,1))
         self.num_classes = num_classes
-
         self.num_ftrs = self.base.fc.in_features
+        remove_block = []
+        remove_block = nn.Sequential(*remove_block)
+        self.base.fc = remove_block
+        
         self.bottleneck = nn.BatchNorm1d(self.num_ftrs)
         self.bottleneck.bias.requires_grad_(False)  # no shift
         self.classifier = nn.Linear(self.num_ftrs, self.num_classes, bias=False)

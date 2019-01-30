@@ -60,3 +60,5 @@ target/
 \.DS_Store
 datasets/
 \.ipynb_checkpoints/
+
+checkpoints/

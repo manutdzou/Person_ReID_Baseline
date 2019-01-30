@@ -1,3 +1,6 @@
+# MODEL:
+#   DEVICE: ""
+
 INPUT:
   SIZE_TRAIN: [384, 128]
   SIZE_TEST: [384, 128]
@@ -36,3 +39,4 @@ TEST:
   IMS_PER_BATCH: 256
 
 OUTPUT_DIR: "./checkpoints/Market1501/Softmax_BS64_384x128"
+GPU_ID: 0
