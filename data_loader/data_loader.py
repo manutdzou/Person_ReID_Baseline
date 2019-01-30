@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from .transforms import transforms
-from .datasets import init_dataset, ImageDataset
+from .datasets_importer import init_dataset, ImageDataset
 from .samplers import RandomIdentitySampler
 
 def data_loader(cfg):

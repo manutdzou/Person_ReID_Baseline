@@ -58,7 +58,7 @@ docs/_build/
 target/
 
 \.DS_Store
-datasets/
+\datasets/
 \.ipynb_checkpoints/
 
 checkpoints/
