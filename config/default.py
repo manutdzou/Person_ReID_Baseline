@@ -6,7 +6,7 @@ _C = CN()
 # MODEL
 # -----------------------------------------------------------------------------
 _C.MODEL = CN()
-_C.MODEL.DEVICE = "cuda"
+_C.MODEL.DEVICE = "cuda:0"
 _C.MODEL.NAME = 'ResNet50'
 _C.MODEL.LAST_STRIDE = 1
 _C.MODEL.PRETRAIN_PATH = ''
@@ -91,4 +91,3 @@ _C.TEST.WEIGHT = ""
 # Misc options
 # ---------------------------------------------------------------------------- #
 _C.OUTPUT_DIR = ""
-_C.GPU_ID = 0

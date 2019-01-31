@@ -39,4 +39,3 @@ TEST:
   WEIGHT: "path"
 
 OUTPUT_DIR: "./checkpoints/Market1501/Softmax_Triplet_BS128_384x128"
-GPU_ID: 0

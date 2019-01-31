@@ -1,8 +1,4 @@
 # encoding: utf-8
-"""
-@author:  liaoxingyu
-@contact: sherlockliao01@gmail.com
-"""
 
 import numpy as np
 def evaluation(distmat, q_pids, g_pids, q_camids, g_camids, max_rank=50):
