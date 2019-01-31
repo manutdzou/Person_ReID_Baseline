@@ -58,7 +58,9 @@ docs/_build/
 target/
 
 \.DS_Store
-\datasets/
+\datasets/Market1501/
+\datasets/DukeMTMC/
+\datasets/CUHK03/
 \.ipynb_checkpoints/
 
 checkpoints/
