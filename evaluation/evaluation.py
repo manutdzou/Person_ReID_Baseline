@@ -1,6 +1,12 @@
 # encoding: utf-8
 
 import numpy as np
+from utils import check_jupyter_run
+if check_jupyter_run():
+    from tqdm import tqdm_notebook as tqdm
+else:
+    from tqdm import tqdm
+
 def evaluation(distmat, q_pids, g_pids, q_camids, g_camids, max_rank=50):
     """Evaluation with market1501 metric
         Key: for each query identity, its gallery images from the same camera view are discarded.
@@ -16,7 +22,7 @@ def evaluation(distmat, q_pids, g_pids, q_camids, g_camids, max_rank=50):
     all_cmc = []
     all_AP = []
     num_valid_q = 0.  # number of valid query
-    for q_idx in range(num_q):
+    for q_idx in tqdm(range(num_q), desc='Metric Computing', leave=False):
         # get query pid and camid
         q_pid = q_pids[q_idx]
         q_camid = q_camids[q_idx]

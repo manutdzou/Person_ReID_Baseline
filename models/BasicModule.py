@@ -10,12 +10,12 @@ class BasicModule(t.nn.Module):
         super(BasicModule,self).__init__()
         self.model_name=str(type(self))# 默认名字
 
-    def load(self, save_path, epoch_label):
+    def load(self, load_path, epoch_label):
         '''
         可加载指定路径的模型
         '''
         save_filename = (self.model_name + '_epo%s.pth' % epoch_label)
-        self.load_state_dict(t.load(os.path.join(save_path,save_filename)))
+        self.load_state_dict(t.load(os.path.join(load_path,save_filename)))
         print('Model:'+ save_filename+ ' loads successfully' )
 
     def save(self, save_path, epoch_label):
