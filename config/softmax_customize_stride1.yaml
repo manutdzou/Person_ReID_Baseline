@@ -1,6 +1,7 @@
 MODEL:
   DEVICE: "cuda:7"
-  NAME: 'ResNet50'
+  NAME: 'ResNet50_Customize'
+  LAST_STRIDE: 1
 
 INPUT:
   SIZE_TRAIN: [384, 128]
@@ -40,4 +41,4 @@ SOLVER:
 TEST:
   IMS_PER_BATCH: 256
 
-OUTPUT_DIR: "./checkpoint/Market1501/Softmax_BS64_384x128"
+OUTPUT_DIR: "./checkpoint/Market1501/Softmax_BS64_384x128_Stride1"

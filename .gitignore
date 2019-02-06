@@ -63,5 +63,5 @@ target/
 \datasets/CUHK03/
 \.ipynb_checkpoints/
 
-checkpoints/
+checkpoint/
 ._.DS_Store

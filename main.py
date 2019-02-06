@@ -28,14 +28,17 @@ def train(config_file):
     if output_dir and not os.path.exists(output_dir):
             os.makedirs(output_dir)
     
-    logger = make_logger("reid_baseline", output_dir)
+    logger = make_logger("Reid_Baseline", output_dir)
     logger.info("Using {} GPUS".format(1))
     logger.info("Loaded configuration file {}".format(config_file))
     logger.info("Running with config:\n{}".format(cfg))
      
     train_loader, val_loader, num_query, num_classes = data_loader(cfg)
 
-    model = getattr(models, cfg.MODEL.NAME)(num_classes)
+    if cfg.MODEL.NAME == 'ResNet50':
+        model = getattr(models, cfg.MODEL.NAME)(num_classes)
+    else:
+        model = getattr(models, cfg.MODEL.NAME)(num_classes, cfg.MODEL.LAST_STRIDE, cfg.MODEL.PRETRAIN_PATH)
     optimizer = make_optimizer(cfg, model)
     scheduler = make_scheduler(cfg,optimizer)
     loss_fn = make_loss(cfg)
@@ -50,7 +53,7 @@ def train(config_file):
     logger.info("Start training")
 
     since = time.time()
-    for epoch in tqdm(range(epochs), desc='Epoch'):
+    for epoch in range(epochs):
         count = 0
         running_loss = 0.0
         running_acc = 0
@@ -74,17 +77,18 @@ def train(config_file):
             running_loss += loss.item()
             running_acc += (scores.max(1)[1] == labels).float().mean().item()
 
-            if count % log_period == 0:
-                logger.info("Epoch[{}] Iteration[{}/{}] Loss: {:.3f}, Acc: {:.3f}, Base Lr: {:.2e}"
+            
+        logger.info("Epoch[{}] Iteration[{}/{}] Loss: {:.3f}, Acc: {:.3f}, Base Lr: {:.2e}"
                                     .format(epoch+1, count, len(train_loader),
                                     running_loss/count, running_acc/count,
                                     scheduler.get_lr()[0]))
+        scheduler.step()
 
-        if epoch % checkpoint_period == 0:
+        if (epoch+1) % checkpoint_period == 0:
             model.save(output_dir,epoch+1)
 
         # Validation
-        if epoch % eval_period == 0:
+        if (epoch+1) % eval_period == 0:
             all_feats = []
             all_pids = []
             all_camids = []
@@ -120,7 +124,7 @@ def train(config_file):
             distmat.addmm_(1, -2, qf, gf.t())
             distmat = distmat.cpu().numpy()
             cmc, mAP = evaluation(distmat, q_pids, g_pids, q_camids, g_camids)
-            logger.info("Validation Results - Epoch: {}".format(epoch))
+            logger.info("Validation Results - Epoch: {}".format(epoch+1))
             logger.info("mAP: {:.1%}".format(mAP))
             for r in [1, 5, 10]:
                 logger.info("CMC curve, Rank-{:<3}:{:.1%}".format(r, cmc[r - 1]))

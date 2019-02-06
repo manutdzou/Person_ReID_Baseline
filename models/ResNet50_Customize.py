@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from torchvision import models
 from .BasicModule import BasicModule
+from .backbones.resnet import ResNet
 
 def weights_init_kaiming(m):
     classname = m.__class__.__name__
@@ -25,28 +26,26 @@ def weights_init_classifier(m):
         if m.bias:
             nn.init.constant_(m.bias, 0.0)
         
-class ResNet50(BasicModule):
-    def __init__(self, num_classes):
-        super(ResNet50, self).__init__()
-        self.model_name = 'ResNet50'
-        self.base = models.resnet50(pretrained=True)
-        self.base.avgpool = nn.AdaptiveAvgPool2d((1,1))
-        # self.base.avgpool = nn.AdaptiveMaxPool2d((1,1))
+class ResNet50_Customize(BasicModule):
+    in_planes = 2048
+    def __init__(self, num_classes, last_stride, model_path):
+        super(ResNet50_Customize, self).__init__()
+        self.model_name = 'ResNet50_Customize'
+        self.base = ResNet(last_stride)
+        self.base.load_param(model_path)
+        self.gap = nn.AdaptiveAvgPool2d(1)
+        # self.gap = nn.AdaptiveMaxPool2d(1)
         self.num_classes = num_classes
-        self.num_ftrs = self.base.fc.in_features
-        remove_block = []
-        remove_block = nn.Sequential(*remove_block)
-        self.base.fc = remove_block
-        
-        self.bottleneck = nn.BatchNorm1d(self.num_ftrs)
+
+        self.bottleneck = nn.BatchNorm1d(self.in_planes)
         self.bottleneck.bias.requires_grad_(False)  # no shift
-        self.classifier = nn.Linear(self.num_ftrs, self.num_classes, bias=False)
+        self.classifier = nn.Linear(self.in_planes, self.num_classes, bias=False)
 
         self.bottleneck.apply(weights_init_kaiming)
         self.classifier.apply(weights_init_classifier)
 
     def forward(self, x):
-        global_feat = self.base(x)  # (b, 2048, 1, 1)
+        global_feat = self.gap(self.base(x))  # (b, 2048, 1, 1)
         global_feat = global_feat.view(global_feat.shape[0], -1)  # flatten to (bs, 2048)
         feat = self.bottleneck(global_feat)  # normalize for angular softmax
         if self.training:

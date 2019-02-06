@@ -9,7 +9,7 @@ _C.MODEL = CN()
 _C.MODEL.DEVICE = "cuda:0"
 _C.MODEL.NAME = 'ResNet50'
 _C.MODEL.LAST_STRIDE = 1
-_C.MODEL.PRETRAIN_PATH = ''
+_C.MODEL.PRETRAIN_PATH = '/home/linshan/.torch/models/resnet50-19c8e357.pth'
 # -----------------------------------------------------------------------------
 # INPUT
 # -----------------------------------------------------------------------------
