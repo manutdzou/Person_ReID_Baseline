@@ -8,8 +8,6 @@ _C = CN()
 _C.MODEL = CN()
 _C.MODEL.DEVICE = "cuda:0"
 _C.MODEL.NAME = 'ResNet50'
-_C.MODEL.LAST_STRIDE = 1
-_C.MODEL.PRETRAIN_PATH = '/home/linshan/.torch/models/resnet50-19c8e357.pth'
 # -----------------------------------------------------------------------------
 # INPUT
 # -----------------------------------------------------------------------------
@@ -69,14 +67,7 @@ _C.SOLVER.GAMMA = 0.1
 
 _C.SOLVER.STEP = 40
 
-_C.SOLVER.WARMUP = True
-_C.SOLVER.WARMUP_STEPS = [30, 55]
-_C.SOLVER.WARMUP_FACTOR = 1.0 / 3
-_C.SOLVER.WARMUP_ITERS = 500
-_C.SOLVER.WARMUP_METHOD = "linear"
-
 _C.SOLVER.CHECKPOINT_PERIOD = 50
-_C.SOLVER.LOG_PERIOD = 100
 _C.SOLVER.EVAL_PERIOD = 50
 # Number of images per batch
 # This is global, so if we have 8 GPUs and IMS_PER_BATCH = 16, each GPU will

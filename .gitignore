@@ -65,3 +65,4 @@ target/
 
 checkpoint/
 ._.DS_Store
+nohup.out

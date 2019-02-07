@@ -35,16 +35,11 @@ def train(config_file):
      
     train_loader, val_loader, num_query, num_classes = data_loader(cfg)
 
-    if cfg.MODEL.NAME == 'ResNet50':
-        model = getattr(models, cfg.MODEL.NAME)(num_classes)
-    else:
-        model = getattr(models, cfg.MODEL.NAME)(num_classes, cfg.MODEL.LAST_STRIDE, cfg.MODEL.PRETRAIN_PATH)
+    model = getattr(models, cfg.MODEL.NAME)(num_classes)
     optimizer = make_optimizer(cfg, model)
     scheduler = make_scheduler(cfg,optimizer)
     loss_fn = make_loss(cfg)
 
-
-    log_period = cfg.SOLVER.LOG_PERIOD
     checkpoint_period = cfg.SOLVER.CHECKPOINT_PERIOD
     eval_period = cfg.SOLVER.EVAL_PERIOD
     output_dir = cfg.OUTPUT_DIR
