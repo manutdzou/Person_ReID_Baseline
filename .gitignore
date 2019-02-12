@@ -61,6 +61,7 @@ target/
 \datasets/Market1501/
 \datasets/DukeMTMC/
 \datasets/CUHK03/
+\datasets/NTUCampus/
 \.ipynb_checkpoints/
 
 checkpoint/

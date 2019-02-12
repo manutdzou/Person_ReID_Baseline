@@ -20,7 +20,8 @@ dataset = {
     'Market1501': '0B2FnquNgAXonU3RTcE1jQlZ3X0E',
     'Market1501Attribute' : '1YMgni5oz-RPkyKHzOKnYRR2H3IRKdsHO',
     'DukeMTMC': '1qtFGJQ6eFu66Tt7WG85KBxtACSE8RBZ0',
-    'DukeMTMCAttribute' : '1eilPJFnk_EHECKj2glU_ZLLO7eR3JIiO'
+    'DukeMTMCAttribute' : '1eilPJFnk_EHECKj2glU_ZLLO7eR3JIiO',
+    'NTUCampus' : '1UFobPpi6xP0LTzo3aheE605CZ3XNWo9L',
 }
 
 ##########################
