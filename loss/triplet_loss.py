@@ -1,8 +1,5 @@
 # encoding: utf-8
-"""
-@author:  liaoxingyu
-@contact: sherlockliao01@gmail.com
-"""
+
 import torch
 from torch import nn
 
