@@ -4,11 +4,11 @@ from .transforms import transforms
 from .datasets_importer import init_dataset, ImageDataset
 from .samplers import RandomIdentitySampler
 
-def data_loader(cfg):
+def data_loader(cfg,dataset_name):
     train_transforms = transforms(cfg, is_train=True)
     val_transforms = transforms(cfg, is_train=False)
     num_workers = cfg.DATALOADER.NUM_WORKERS
-    dataset = init_dataset(cfg)
+    dataset = init_dataset(cfg,dataset_name)
     num_classes = dataset.num_train_pids
     train_set = ImageDataset(dataset.train, train_transforms)
     if cfg.DATALOADER.SAMPLER == 'softmax':

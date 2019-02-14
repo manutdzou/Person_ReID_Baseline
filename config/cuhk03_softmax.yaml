@@ -1,7 +1,7 @@
 MODEL:
   DEVICE: "cuda:0"
   NAME: 'ResNet50'
-  
+
 INPUT:
   SIZE_TRAIN: [384, 128]
   SIZE_TEST: [384, 128]
@@ -9,11 +9,10 @@ INPUT:
   PADDING: 10
 
 DATASETS:
-  NAMES: ('NTUCampus')
+  NAMES: ('CUHK03')
 
 DATALOADER:
-  SAMPLER: 'softmax_triplet'
-  NUM_INSTANCE: 4
+  SAMPLER: 'softmax'
   NUM_WORKERS: 8
 
 SOLVER:
@@ -29,10 +28,10 @@ SOLVER:
   GAMMA: 0.1
 
   CHECKPOINT_PERIOD: 20
-  EVAL_PERIOD: 10
+  EVAL_PERIOD: 20
 
 TEST:
   IMS_PER_BATCH: 256
   RE_RANKING: False
 
-OUTPUT_DIR: "./checkpoint/NTUCampus/Softmax_Triplet_BS128"
+OUTPUT_DIR: "./checkpoint/CUHK03/Softmax_BS128"

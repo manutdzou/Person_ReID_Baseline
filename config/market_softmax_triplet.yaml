@@ -33,5 +33,8 @@ SOLVER:
 
 TEST:
   IMS_PER_BATCH: 256
+  LOAD_EPOCH: 120
+  RE_RANKING: False
+  
 
 OUTPUT_DIR: "./checkpoint/Market1501/Softmax_Triplet_BS128"

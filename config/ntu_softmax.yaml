@@ -32,5 +32,6 @@ SOLVER:
 
 TEST:
   IMS_PER_BATCH: 256
+  RE_RANKING: False
 
 OUTPUT_DIR: "./checkpoint/NTUCampus/Softmax_BS128"

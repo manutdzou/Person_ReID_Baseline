@@ -4,3 +4,4 @@ tqdm
 requests
 numpy
 h5py
+scipy

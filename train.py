@@ -1,3 +1,5 @@
+import fire
+import fire
 import os
 import time
 import torch
@@ -28,12 +30,12 @@ def train(config_file):
     if output_dir and not os.path.exists(output_dir):
             os.makedirs(output_dir)
     
-    logger = make_logger("Reid_Baseline", output_dir)
+    logger = make_logger("Reid_Baseline", output_dir,'log')
     logger.info("Using {} GPUS".format(1))
     logger.info("Loaded configuration file {}".format(config_file))
     logger.info("Running with config:\n{}".format(cfg))
      
-    train_loader, val_loader, num_query, num_classes = data_loader(cfg)
+    train_loader, val_loader, num_query, num_classes = data_loader(cfg,cfg.DATASETS.NAMES)
 
     model = getattr(models, cfg.MODEL.NAME)(num_classes)
     optimizer = make_optimizer(cfg, model)
@@ -45,6 +47,8 @@ def train(config_file):
     output_dir = cfg.OUTPUT_DIR
     device = torch.device(cfg.MODEL.DEVICE)
     epochs = cfg.SOLVER.MAX_EPOCHS
+
+
     logger.info("Start training")
 
     since = time.time()
@@ -87,7 +91,6 @@ def train(config_file):
             all_feats = []
             all_pids = []
             all_camids = []
-
             for data in tqdm(val_loader, desc='Feature Extraction', leave=False):
                 model.eval()
                 with torch.no_grad():
@@ -103,22 +106,7 @@ def train(config_file):
                 all_pids.extend(np.asarray(pids))
                 all_camids.extend(np.asarray(camids))
 
-            all_feats = torch.cat(all_feats, dim=0)
-            # query
-            qf = all_feats[:num_query]
-            q_pids = np.asarray(all_pids[:num_query])
-            q_camids = np.asarray(all_camids[:num_query])
-            # gallery
-            gf = all_feats[num_query:]
-            g_pids = np.asarray(all_pids[num_query:])
-            g_camids = np.asarray(all_camids[num_query:])
-
-            m, n = qf.shape[0], gf.shape[0]
-            distmat = torch.pow(qf, 2).sum(dim=1, keepdim=True).expand(m, n) + \
-                      torch.pow(gf, 2).sum(dim=1, keepdim=True).expand(n, m).t()
-            distmat.addmm_(1, -2, qf, gf.t())
-            distmat = distmat.cpu().numpy()
-            cmc, mAP = evaluation(distmat, q_pids, g_pids, q_camids, g_camids)
+            cmc, mAP = evaluation(all_feats,all_pids,all_camids,num_query)
             logger.info("Validation Results - Epoch: {}".format(epoch+1))
             logger.info("mAP: {:.1%}".format(mAP))
             for r in [1, 5, 10]:
@@ -132,4 +120,4 @@ def train(config_file):
 
 if __name__=='__main__':
     import fire
-    fire.Fire()
+    fire.Fire(train)

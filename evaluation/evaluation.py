@@ -1,16 +1,41 @@
 # encoding: utf-8
-
+import torch
 import numpy as np
+from .re_ranking import re_ranking
 from utils import check_jupyter_run
 if check_jupyter_run():
     from tqdm import tqdm_notebook as tqdm
 else:
     from tqdm import tqdm
 
-def evaluation(distmat, q_pids, g_pids, q_camids, g_camids, max_rank=50):
+def evaluation(all_feats,all_pids,all_camids,num_query,rr=False, max_rank=50):
+    all_feats = torch.cat(all_feats, dim=0)
+    # query
+    qf = all_feats[:num_query]
+    q_pids = np.asarray(all_pids[:num_query])
+    q_camids = np.asarray(all_camids[:num_query])
+    # gallery
+    gf = all_feats[num_query:]
+    g_pids = np.asarray(all_pids[num_query:])
+    g_camids = np.asarray(all_camids[num_query:])
+    
+    if not rr:    
+        m, n = qf.shape[0], gf.shape[0]
+        distmat = torch.pow(qf, 2).sum(dim=1, keepdim=True).expand(m, n) + \
+                  torch.pow(gf, 2).sum(dim=1, keepdim=True).expand(n, m).t()
+        distmat.addmm_(1, -2, qf, gf.t())
+        distmat = distmat.cpu().numpy()
+    else:
+        print('Calculating Distance')
+        q_g_dist = np.dot(qf.data.cpu(), np.transpose(gf.data.cpu()))
+        q_q_dist = np.dot(qf.data.cpu(), np.transpose(qf.data.cpu()))
+        g_g_dist = np.dot(gf.data.cpu(), np.transpose(gf.data.cpu()))
+        print('Re-ranking:')
+        distmat= re_ranking(q_g_dist, q_q_dist, g_g_dist)
+        
     """Evaluation with market1501 metric
-        Key: for each query identity, its gallery images from the same camera view are discarded.
-        """
+    Key: for each query identity, its gallery images from the same camera view are discarded.
+    """
     num_q, num_g = distmat.shape
     if num_g < max_rank:
         max_rank = num_g

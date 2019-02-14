@@ -78,7 +78,8 @@ _C.SOLVER.IMS_PER_BATCH = 64
 # see 2 images per batch
 _C.TEST = CN()
 _C.TEST.IMS_PER_BATCH = 128
-_C.TEST.WEIGHT = ""
+_C.TEST.LOAD_EPOCH = 120
+_C.TEST.RE_RANKING = False
 
 # ---------------------------------------------------------------------------- #
 # Misc options

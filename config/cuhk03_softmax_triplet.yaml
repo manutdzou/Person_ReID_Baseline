@@ -9,7 +9,7 @@ INPUT:
   PADDING: 10
 
 DATASETS:
-  NAMES: ('NTUCampus')
+  NAMES: ('CUHK03')
 
 DATALOADER:
   SAMPLER: 'softmax_triplet'
@@ -29,10 +29,10 @@ SOLVER:
   GAMMA: 0.1
 
   CHECKPOINT_PERIOD: 20
-  EVAL_PERIOD: 10
+  EVAL_PERIOD: 20
 
 TEST:
   IMS_PER_BATCH: 256
   RE_RANKING: False
 
-OUTPUT_DIR: "./checkpoint/NTUCampus/Softmax_Triplet_BS128"
+OUTPUT_DIR: "./checkpoint/CUHK03/Softmax_Triplet_BS128"

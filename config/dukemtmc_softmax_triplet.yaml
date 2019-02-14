@@ -33,5 +33,6 @@ SOLVER:
 
 TEST:
   IMS_PER_BATCH: 256
+  RE_RANKING: False
 
 OUTPUT_DIR: "./checkpoint/DukeMTMC/Softmax_Triplet_BS128"

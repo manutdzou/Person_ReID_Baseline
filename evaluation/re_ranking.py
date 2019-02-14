@@ -1,5 +1,3 @@
-#!/usr/bin/env python2/python3
-# -*- coding: utf-8 -*-
 """
 Created on Mon Jun 26 14:46:56 2017
 @author: luohao
@@ -29,7 +27,7 @@ Returns:
 """
 
 import numpy as np
-from utils.check_jupyter_run import check_jupyter_run
+from utils import check_jupyter_run
 if check_jupyter_run():
     from tqdm import tqdm_notebook as tqdm
 else:
@@ -58,8 +56,7 @@ def re_ranking(q_g_dist, q_q_dist, g_g_dist, k1=20, k2=6, lambda_value=0.3):
     query_num = q_g_dist.shape[0]
     all_num = original_dist.shape[0]
 
-    print('Calculating k-reciprocal neighbors')
-    for i in tqdm(range(all_num)):
+    for i in tqdm(range(all_num), desc='K-reciprocal Computing', leave=False):
         # k-reciprocal neighbors
         k_reciprocal_index = k_reciprocal_neigh( initial_rank, i, k1)
         k_reciprocal_expansion_index = k_reciprocal_index
@@ -76,21 +73,19 @@ def re_ranking(q_g_dist, q_q_dist, g_g_dist, k1=20, k2=6, lambda_value=0.3):
     original_dist = original_dist[:query_num,]
     if k2 != 1:
         V_qe = np.zeros_like(V,dtype=np.float32)
-        for i in tqdm(range(all_num)):
+        for i in tqdm(range(all_num), leave=False):
             V_qe[i,:] = np.mean(V[initial_rank[i,:k2],:],axis=0)
         V = V_qe
         del V_qe
     del initial_rank
     invIndex = []
     
-    print('Inserting k-reciprocal neighbors')
-    for i in tqdm(range(all_num)):
+    for i in tqdm(range(all_num), desc='Inserting', leave=False):
         invIndex.append(np.where(V[:,i] != 0)[0])
 
     jaccard_dist = np.zeros_like(original_dist,dtype = np.float32)
     
-    print('Calculating Jaccard Distance')
-    for i in tqdm(range(query_num)):
+    for i in tqdm(range(query_num), desc='Jaccard Distance', leave=False):
         temp_min = np.zeros(shape=[1,all_num],dtype=np.float32)
         indNonZero = np.where(V[i,:] != 0)[0]
         indImages = []
