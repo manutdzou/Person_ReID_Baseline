@@ -63,9 +63,9 @@ target/
 \datasets/CUHK03/
 \datasets/NTUCampus/
 \datasets/MSMT17/
+\datasets/CUHK03/
 \.ipynb_checkpoints/
 
 checkpoint/
 ._.DS_Store
 nohup.out
-nohup2.out
