@@ -30,7 +30,7 @@ python train.py ./config/market_softmax.yaml
 python test.py ./config/market_softmax.yaml
 
 ### With Re-Ranking
-python test.py ./config/market_softmax.yamln True
+python test.py ./config/market_softmax.yaml True
 ```
 
 ## Testing Cross Dataset:
@@ -41,12 +41,12 @@ python test_cross_dataset.py ./config/market_softmax.yaml DukeMTMC
 
 ## Results
 
-|            |   Softmax   | Softmax+Triplet |
-|     ---    |     --      | --              |
-| CUHK03     | 61.8 (58.7) | 63.6 (60.2)     |
-| Market1501 | 91.3 (77.8) | 92.8 (82.0)     |
-| DukeMTMC   | 84.1 (67.7) | 86.2 (73.0)     |
-| MSMT17     | 71.6 (43.9) | 74.0 (47.5)     |
+|            |   Softmax   | Softmax+Triplet |Softmax+Re-ranking|Softmax+Triplet+Re-ranking |
+|     ---    |     --      | --              |--                |--                         |
+| CUHK03     | 61.8 (58.7) | 63.6 (60.2)     |68.2 (70.0)       |72.6 (73.9)                |
+| Market1501 | 91.3 (77.8) | 92.8 (82.0)     |90.6 (85.7)       |93.3 (90.1)                |
+| DukeMTMC   | 84.1 (67.7) | 86.2 (73.0)     |85.3 (79.6)       |88.2 (83.5)                |
+| MSMT17     | 71.6 (43.9) | 74.0 (47.5)     |-                 |-                          |
 
 
 ## File and Folder Structure
