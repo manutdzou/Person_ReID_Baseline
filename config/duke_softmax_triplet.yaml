@@ -1,5 +1,5 @@
 MODEL:
-  DEVICE: "cuda:0"
+  DEVICE: "cuda:1"
   NAME: 'ResNet50'
   
 INPUT:
@@ -9,7 +9,7 @@ INPUT:
   PADDING: 10
 
 DATASETS:
-  NAMES: ('CUHK03')
+  NAMES: ('DukeMTMC')
 
 DATALOADER:
   SAMPLER: 'softmax_triplet'
@@ -35,4 +35,4 @@ TEST:
   IMS_PER_BATCH: 256
   RE_RANKING: False
 
-OUTPUT_DIR: "./checkpoint/CUHK03/Softmax_Triplet_BS128"
+OUTPUT_DIR: "./checkpoint/DukeMTMC/Softmax_Triplet_BS128"

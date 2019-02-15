@@ -4,7 +4,7 @@ from .market1501 import Market1501
 from .dukemtmc import DukeMTMC
 from .msmt17 import MSMT17
 from .ntucampus import NTUCampus
-from .dataset_loader import ImageDataset
+from .ImageDataset import ImageDataset
 
 __factory = {
     'CUHK03': CUHK03,

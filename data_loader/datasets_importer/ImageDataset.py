@@ -1,9 +1,4 @@
-# encoding: utf-8
-"""
-@author:  liaoxingyu
-@contact: sherlockliao01@gmail.com
-"""
-import os
+import os.path as osp
 from PIL import Image
 from torch.utils.data import Dataset
 
@@ -12,7 +7,7 @@ def read_image(img_path):
     """Keep reading image until succeed.
     This can avoid IOError incurred by heavy IO process."""
     got_img = False
-    if not os.path.exists(img_path):
+    if not osp.exists(img_path):
         raise IOError("{} does not exist".format(img_path))
     while not got_img:
         try:

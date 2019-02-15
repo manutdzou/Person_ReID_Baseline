@@ -1,7 +1,7 @@
 MODEL:
-  DEVICE: "cuda:0"
+  DEVICE: "cuda:1"
   NAME: 'ResNet50'
-
+  
 INPUT:
   SIZE_TRAIN: [384, 128]
   SIZE_TEST: [384, 128]
@@ -9,10 +9,11 @@ INPUT:
   PADDING: 10
 
 DATASETS:
-  NAMES: ('DukeMTMC')
+  NAMES: ('CUHK03')
 
 DATALOADER:
-  SAMPLER: 'softmax'
+  SAMPLER: 'softmax_triplet'
+  NUM_INSTANCE: 4
   NUM_WORKERS: 8
 
 SOLVER:
@@ -34,4 +35,4 @@ TEST:
   IMS_PER_BATCH: 256
   RE_RANKING: False
 
-OUTPUT_DIR: "./checkpoint/DukeMTMC/Softmax_BS128"
+OUTPUT_DIR: "./checkpoint/CUHK03/Softmax_Triplet_BS128"

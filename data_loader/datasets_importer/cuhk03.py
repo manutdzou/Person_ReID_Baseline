@@ -13,8 +13,36 @@ import os
 import h5py
 from scipy.io import loadmat
 from scipy.misc import imsave
-from utils.iotools import mkdir_if_missing, write_json, read_json
 from .BaseDataset import BaseImageDataset
+import errno
+import json
+
+
+def mkdir_if_missing(directory):
+    if not os.path.exists(directory):
+        try:
+            os.makedirs(directory)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
+def check_isfile(path):
+    isfile = os.path.isfile(path)
+    if not isfile:
+        print("=> Warning: no file found at '{}' (ignored)".format(path))
+    return isfile
+
+
+def read_json(fpath):
+    with open(fpath, 'r') as f:
+        obj = json.load(f)
+    return obj
+
+
+def write_json(obj, fpath):
+    mkdir_if_missing(os.path.dirname(fpath))
+    with open(fpath, 'w') as f:
+        json.dump(obj, f, indent=4, separators=(',', ': '))
 
 
 class CUHK03(BaseImageDataset):

@@ -1,5 +1,5 @@
 MODEL:
-  DEVICE: "cuda:0"
+  DEVICE: "cuda:1"
   NAME: 'ResNet50'
 
 INPUT:
