@@ -69,3 +69,5 @@ target/
 checkpoint/
 ._.DS_Store
 nohup.out
+auto.sh
+nohup2.out

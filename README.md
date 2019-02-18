@@ -1,5 +1,9 @@
 # Basic Person ReID Baseline and Project Template
 
+**A basic Person ReID Baseline and a pytorch template for NTU ROSE Person ReID Project.**
+
+I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss, evething elso is pytorch native functions. 
+
 ## Requirements
 - [python 3](https://www.python.org/downloads/)
 - [pytorch 1.0 + torchvision](https://pytorch.org/)
@@ -41,12 +45,25 @@ python test_cross_dataset.py ./config/market_softmax.yaml DukeMTMC
 
 ## Results
 
+##### __Batch Size 128__: Rank1  (mAP)
+
 |            |   Softmax   | Softmax+Triplet |Softmax+Re-ranking|Softmax+Triplet+Re-ranking |
 |     ---    |     --      | --              |--                |--                         |
 | CUHK03     | 61.8 (58.7) | 63.6 (60.2)     |68.2 (70.0)       |72.6 (73.9)                |
 | Market1501 | 91.3 (77.8) | 92.8 (82.0)     |90.6 (85.7)       |93.3 (90.1)                |
 | DukeMTMC   | 84.1 (67.7) | 86.2 (73.0)     |85.3 (79.6)       |88.2 (83.5)                |
 | MSMT17     | 71.6 (43.9) | 74.0 (47.5)     |-                 |-                          |
+
+##### __Batch Size 64__: Rank1  (mAP)
+
+|            |   Softmax   | Softmax+Triplet |Softmax+Re-ranking|Softmax+Triplet+Re-ranking |
+|     ---    |     --      | --              |--                |--                         |
+| CUHK03     | 56.1 (52.4) | 65.6 (61.8)     |64.2 (64.9)       |74.6 (75.5)                |
+| Market1501 | 91.6 (78.7) | 93.2 (82.0)     |90.8 (85.9)       |93.8 (90.2)                |
+| DukeMTMC   | 83.4 (66.6) | 86.4 (72.4)     |84.9 (79.5)       |88.1 (83.0)                |
+| MSMT17     | 69.0 (40.1) | -     |-                 |-                          |
+
+
 
 
 ## File and Folder Structure
@@ -109,3 +126,6 @@ python test_cross_dataset.py ./config/market_softmax.yaml DukeMTMC
 │
 └── test_cross_dataset.pu	- test the performance in cross-dataset scenario
 ```
+
+## Issues
+- [ ] Re-Ranking is currently not working on MSMT17. Currently under investigating 

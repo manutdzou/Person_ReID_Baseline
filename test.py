@@ -31,7 +31,7 @@ def test(config_file, re_ranking=False):
     
     device = torch.device(cfg.MODEL.DEVICE)
     
-    train_loader, val_loader, num_query, num_classes = data_loader(cfg,cfg.DATASETS.NAMES)
+    _, val_loader, num_query, num_classes = data_loader(cfg,cfg.DATASETS.NAMES)
     
     model = getattr(models, cfg.MODEL.NAME)(num_classes)
     model.load(cfg.OUTPUT_DIR,cfg.TEST.LOAD_EPOCH)

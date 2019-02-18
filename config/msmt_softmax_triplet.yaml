@@ -1,5 +1,5 @@
 MODEL:
-  DEVICE: "cuda:0"
+  DEVICE: "cuda:4"
   NAME: 'ResNet50'
   
 INPUT:
@@ -23,7 +23,7 @@ SOLVER:
   BIAS_LR_FACTOR: 1
   WEIGHT_DECAY: 0.0005
   WEIGHT_DECAY_BIAS: 0.0005
-  IMS_PER_BATCH: 128
+  IMS_PER_BATCH: 64
 
   STEP: 40
   GAMMA: 0.1
@@ -32,7 +32,7 @@ SOLVER:
   EVAL_PERIOD: 20
 
 TEST:
-  IMS_PER_BATCH: 256
+  IMS_PER_BATCH: 64
   RE_RANKING: False
 
-OUTPUT_DIR: "./checkpoint/MSMT17/Softmax_Triplet_BS128"
+OUTPUT_DIR: "./checkpoint/MSMT17/Softmax_Triplet_BS64"
