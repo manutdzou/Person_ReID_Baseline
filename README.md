@@ -1,6 +1,6 @@
 # Basic Person ReID Baseline and Project Template
 
-**A basic Person ReID Baseline and a pytorch template for NTU ROSE Person ReID Project.**
+**A Basic Person ReID Baseline and a PyTorch Template for NTU ROSE Person ReID Project.**
 
 I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss. Evething elso is all pytorch native build-in functions. 
 
@@ -15,20 +15,21 @@ Install all dependences libraries
 pip3 install -r requirements.txt
 ```
 
+## Configs
+Use different yaml config files for different experiment settings. Please use different `OUTPUT_DIR` names for different experiments to avoid conflit and accidentally files overwritten.
+
+
 ## Datasets
-Person Re-ID datasets defined in the `DATASETS.NAMES` of the yaml config file will be download automatically into the `datasets` folder.
+This code support CUHK03, Market1501, DukeMTMC and MSMT17 datasets. All these dataset should be defined in the `DATASETS.NAMES` of the config file, our code will be download the corresponding dataset automatically (into the `datasets` folder).
 Currently support:
 * [CUHK03](http://www.ee.cuhk.edu.hk/~xgwang/CUHK_identification.html)
 * [Market1501](http://www.liangzheng.org/Project/project_reid.html)
 * [DukeMTMC](https://github.com/layumi/DukeMTMC-reID_evaluation)
 * [MSMT17](https://www.pkuvmc.com/publications/msmt17.html)
 
-## Configs
-Use different yaml config files for different experiment settings. Please use different `OUTPUT_DIR` names for different experiments.
-
 
 ## Training:
-* Batch Size 128 will use around 12.01G GPU memory (Only recommend for Titian GPU and above on server interface)
+* Batch Size 128 uses around 12.01G GPU memory (Only recommend for Titian GPU and above on server interface)
 * Batch Size 64 is the most suitable size for GTX 1080ti
 
 ``` bash
@@ -36,7 +37,7 @@ python train.py ./config/market_softmax.yaml
 ```
 
 ## Testing:
-* Default testing batch size is 256. Reduce to accommodate your GPU memory.
+* Default testing batch size is 256. Reduce to accommodate your GPU memory size.
 
 ``` bash
 ### No Re-Ranking
@@ -77,6 +78,15 @@ python test_cross_dataset.py ./config/market_softmax.yaml DukeMTMC
 
 ## File and Folder Structure
 ```
+├──  checkpoint - here's store all the training models checkpoints and testing results
+│    └── Market1501
+│        └── Softmax_BS64
+│            └── log.txt                 - training log
+│            └── ResNet50_epo120.pth     - saved model checkpoint parameters
+│            └── result.txt              - testing result
+│            └── result_re-ranking.txt   - testing result with re-ranking
+│ 
+│
 ├──  config
 │    └── defaults.py  - here's the default config file.
 │    └── market_softmax.yml  - here's the specific config file for specific model or dataset.
@@ -137,4 +147,4 @@ python test_cross_dataset.py ./config/market_softmax.yaml DukeMTMC
 ```
 
 ## Issues
-- [ ] Re-Ranking is currently not working on MSMT17. Currently under investigating 
+- [ ] Re-Ranking is not working on MSMT17. Currently under investigating 
