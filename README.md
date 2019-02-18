@@ -2,7 +2,7 @@
 
 **A basic Person ReID Baseline and a pytorch template for NTU ROSE Person ReID Project.**
 
-I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss, evething elso is pytorch native functions. 
+I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss. Evething elso is all pytorch native build-in functions. 
 
 ## Requirements
 - [python 3](https://www.python.org/downloads/)
@@ -23,12 +23,21 @@ Currently support:
 * [DukeMTMC](https://github.com/layumi/DukeMTMC-reID_evaluation)
 * [MSMT17](https://www.pkuvmc.com/publications/msmt17.html)
 
+## Configs
+Use different yaml config files for different experiment settings. Please use different `OUTPUT_DIR` names for different experiments.
+
+
 ## Training:
+* Batch Size 128 will use around 12.01G GPU memory (Only recommend for Titian GPU and above on server interface)
+* Batch Size 64 is the most suitable size for GTX 1080ti
+
 ``` bash
 python train.py ./config/market_softmax.yaml
 ```
 
 ## Testing:
+* Default testing batch size is 256. Reduce to accommodate your GPU memory.
+
 ``` bash
 ### No Re-Ranking
 python test.py ./config/market_softmax.yaml
