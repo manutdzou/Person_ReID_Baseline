@@ -15,7 +15,7 @@ class BasicModule(t.nn.Module):
         可加载指定路径的模型
         '''
         save_filename = (self.model_name + '_epo%s.pth' % epoch_label)
-        self.load_state_dict(t.load(os.path.join(load_path,save_filename)))
+        self.load_state_dict(t.load(os.path.join(load_path,save_filename),map_location=t.device('cpu')))
         print('Model:'+ save_filename+ ' loads successfully' )
 
     def save(self, save_path, epoch_label):
@@ -25,5 +25,5 @@ class BasicModule(t.nn.Module):
         save_filename = (self.model_name + '_epo%s.pth' % epoch_label)
         if not os.path.exists(save_path):
             os.makedirs(save_path)
-        t.save(self.cuda().state_dict(),os.path.join(save_path,save_filename))
+        t.save(self.state_dict(),os.path.join(save_path,save_filename))
         print('Model:'+ save_filename+ ' saves successfully' )

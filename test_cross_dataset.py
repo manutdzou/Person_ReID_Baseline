@@ -21,8 +21,14 @@ else:
     from tqdm import tqdm
 
     
-def test_cross_dataset(config_file,test_dataset, re_ranking=False):
+def test_cross_dataset(config_file,test_dataset, **kwargs):
     cfg.merge_from_file(config_file)
+    if kwargs:
+        opts = []
+        for k,v in kwargs.items():
+            opts.append(k)
+            opts.append(v)
+        cfg.merge_from_list(opts)
     cfg.freeze()
     
     PersonReID_Dataset_Downloader('./datasets',cfg.DATASETS.NAMES)
@@ -30,6 +36,8 @@ def test_cross_dataset(config_file,test_dataset, re_ranking=False):
     
     PersonReID_Dataset_Downloader('./datasets',test_dataset)
     _, val_loader, num_query, _ = data_loader(cfg,test_dataset)
+    
+    re_ranking=cfg.RE_RANKING
     
     if not re_ranking:
         logger = make_logger("Reid_Baseline", cfg.OUTPUT_DIR,
@@ -40,7 +48,7 @@ def test_cross_dataset(config_file,test_dataset, re_ranking=False):
                              cfg.DATASETS.NAMES+'->'+test_dataset+'_re-ranking')
         logger.info("Re-Ranking Test Results:") 
         
-    device = torch.device(cfg.MODEL.DEVICE)
+    device = torch.device(cfg.DEVICE)
     
     model = getattr(models, cfg.MODEL.NAME)(num_classes)
     model.load(cfg.OUTPUT_DIR,cfg.TEST.LOAD_EPOCH)

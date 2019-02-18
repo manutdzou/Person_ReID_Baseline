@@ -17,9 +17,17 @@ else:
     from tqdm import tqdm
 
     
-def test(config_file, re_ranking=False):
+def test(config_file, **kwargs):
     cfg.merge_from_file(config_file)
+    if kwargs:
+        opts = []
+        for k,v in kwargs.items():
+            opts.append(k)
+            opts.append(v)
+        cfg.merge_from_list(opts)
     cfg.freeze()
+    
+    re_ranking=cfg.RE_RANKING
     
     PersonReID_Dataset_Downloader('./datasets',cfg.DATASETS.NAMES)
     if not re_ranking:
@@ -29,12 +37,14 @@ def test(config_file, re_ranking=False):
         logger = make_logger("Reid_Baseline", cfg.OUTPUT_DIR,'result_re-ranking')
         logger.info("Re-Ranking Test Results:") 
     
-    device = torch.device(cfg.MODEL.DEVICE)
+    device = torch.device(cfg.DEVICE)
     
     _, val_loader, num_query, num_classes = data_loader(cfg,cfg.DATASETS.NAMES)
     
     model = getattr(models, cfg.MODEL.NAME)(num_classes)
     model.load(cfg.OUTPUT_DIR,cfg.TEST.LOAD_EPOCH)
+    if device:
+        model.to(device) 
     model = model.eval()
     
     all_feats = []
@@ -43,11 +53,10 @@ def test(config_file, re_ranking=False):
     
     since = time.time()
     for data in tqdm(val_loader, desc='Feature Extraction', leave=False):
-        model.eval()
         with torch.no_grad():
             images, pids, camids = data
             if device:
-                model.to(device)
+                model.to(device) 
                 images = images.to(device)
             
             feats = model(images)

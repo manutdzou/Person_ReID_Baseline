@@ -20,8 +20,14 @@ if check_jupyter_run():
 else:
     from tqdm import tqdm
 
-def train(config_file):
+def train(config_file, **kwargs):
     cfg.merge_from_file(config_file)
+    if kwargs:
+        opts = []
+        for k,v in kwargs.items():
+            opts.append(k)
+            opts.append(v)
+        cfg.merge_from_list(opts)
     cfg.freeze()
     
     PersonReID_Dataset_Downloader('./datasets',cfg.DATASETS.NAMES)
@@ -34,34 +40,33 @@ def train(config_file):
     logger.info("Using {} GPUS".format(1))
     logger.info("Loaded configuration file {}".format(config_file))
     logger.info("Running with config:\n{}".format(cfg))
+    
+    checkpoint_period = cfg.SOLVER.CHECKPOINT_PERIOD
+    eval_period = cfg.SOLVER.EVAL_PERIOD
+    output_dir = cfg.OUTPUT_DIR
+    device = torch.device(cfg.DEVICE)
+    epochs = cfg.SOLVER.MAX_EPOCHS
      
     train_loader, val_loader, num_query, num_classes = data_loader(cfg,cfg.DATASETS.NAMES)
 
     model = getattr(models, cfg.MODEL.NAME)(num_classes)
+    if device:
+        model.to(device)
+    model.train()
     optimizer = make_optimizer(cfg, model)
     scheduler = make_scheduler(cfg,optimizer)
     loss_fn = make_loss(cfg)
 
-    checkpoint_period = cfg.SOLVER.CHECKPOINT_PERIOD
-    eval_period = cfg.SOLVER.EVAL_PERIOD
-    output_dir = cfg.OUTPUT_DIR
-    device = torch.device(cfg.MODEL.DEVICE)
-    epochs = cfg.SOLVER.MAX_EPOCHS
-
-
     logger.info("Start training")
-
     since = time.time()
     for epoch in range(epochs):
         count = 0
         running_loss = 0.0
         running_acc = 0
         for data in tqdm(train_loader, desc='Iteration', leave=False):
-            model.train()
             images, labels = data
 
             if device:
-                model.to(device)
                 images, labels = images.to(device), labels.to(device)
 
             optimizer.zero_grad()

@@ -3,6 +3,9 @@ from torch.utils.data import DataLoader
 from .transforms import transforms
 from .datasets_importer import init_dataset, ImageDataset
 from .samplers import RandomIdentitySampler
+import os.path as osp
+from PIL import Image
+from torch.utils.data import Dataset
 
 def data_loader(cfg,dataset_name):
     train_transforms = transforms(cfg, is_train=True)
@@ -29,10 +32,6 @@ def data_loader(cfg,dataset_name):
         collate_fn=val_collate_fn
     )
     return train_loader, val_loader, len(dataset.query), num_classes
-
-import os.path as osp
-from PIL import Image
-from torch.utils.data import Dataset
 
 
 def read_image(img_path):

@@ -2,7 +2,7 @@
 
 **A Basic Person ReID Baseline and a PyTorch Template for NTU ROSE Person ReID Project.**
 
-I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss and random erasing. Evething elso are all pytorch native build-in functions. 
+I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite L1aoXingyu's [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss and random erasing. Evething elso are all pytorch native build-in functions. 
 
 ## Requirements
 - [python 3](https://www.python.org/downloads/)
@@ -34,6 +34,9 @@ Currently support:
 
 ``` bash
 python train.py ./config/market_softmax.yaml
+
+### Change GPU
+python train.py ./config/market_softmax.yaml --DEVICE=cuda:5
 ```
 
 ## Testing:
@@ -43,8 +46,11 @@ python train.py ./config/market_softmax.yaml
 ### No Re-Ranking
 python test.py ./config/market_softmax.yaml
 
+### Change GPU
+python test.py ./config/market_softmax.yaml --DEVICE=cuda:5
+
 ### With Re-Ranking
-python test.py ./config/market_softmax.yaml True
+python test.py ./config/market_softmax.yaml --RE_RANKING=True
 ```
 
 ## Testing Cross Dataset:
