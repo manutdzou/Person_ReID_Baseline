@@ -2,7 +2,7 @@
 
 **A Basic Person ReID Baseline and a PyTorch Template for NTU ROSE Person ReID Project.**
 
-I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss. Evething elso is all pytorch native build-in functions. 
+I am not a big fan of pytorch [ignite](https://github.com/pytorch/ignite)(Too high level). So I have rewrite [L1aoXingyu's](https://github.com/L1aoXingyu) [reid_baseline](https://github.com/L1aoXingyu/reid_baseline) following the basic pytorch training and testing logtic flow. As a basic reid baseline, I remove most of tricks and custom-made scheduler, except the bash hard triplet loss and random erasing. Evething elso are all pytorch native build-in functions. 
 
 ## Requirements
 - [python 3](https://www.python.org/downloads/)
