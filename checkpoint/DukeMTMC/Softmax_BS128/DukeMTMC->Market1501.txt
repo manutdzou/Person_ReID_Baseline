@@ -1,0 +1,6 @@
+2019-02-15 14:57:01,569 Reid_Baseline INFO: Test Results:
+2019-02-15 15:01:38,860 Reid_Baseline INFO: mAP: 15.6%
+2019-02-15 15:01:38,861 Reid_Baseline INFO: CMC curve, Rank-1  :38.0%
+2019-02-15 15:01:38,861 Reid_Baseline INFO: CMC curve, Rank-5  :56.5%
+2019-02-15 15:01:38,861 Reid_Baseline INFO: CMC curve, Rank-10 :64.0%
+2019-02-15 15:01:38,861 Reid_Baseline INFO: Testing complete in 4m 32s

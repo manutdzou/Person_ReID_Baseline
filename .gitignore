@@ -66,8 +66,13 @@ target/
 \datasets/CUHK03/
 \.ipynb_checkpoints/
 
-checkpoint/
 ._.DS_Store
 nohup.out
-auto.sh
 nohup2.out
+
+ResNet50_epo120.pth
+ResNet50_epo100.pth
+ResNet50_epo80.pth
+ResNet50_epo60.pth
+ResNet50_epo40.pth
+ResNet50_epo20.pth
