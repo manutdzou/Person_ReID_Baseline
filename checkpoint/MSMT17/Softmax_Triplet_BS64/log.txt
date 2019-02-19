@@ -1,6 +1,6 @@
-2019-02-18 12:34:53,036 Reid_Baseline INFO: Using 1 GPUS
-2019-02-18 12:34:53,037 Reid_Baseline INFO: Loaded configuration file ./config/msmt_softmax_triplet.yaml
-2019-02-18 12:34:53,037 Reid_Baseline INFO: Running with config:
+2019-02-19 00:28:51,159 Reid_Baseline INFO: Using 1 GPUS
+2019-02-19 00:28:51,160 Reid_Baseline INFO: Loaded configuration file ./config/msmt_softmax_triplet.yaml
+2019-02-19 00:28:51,160 Reid_Baseline INFO: Running with config:
 DATALOADER:
   NUM_INSTANCE: 4
   NUM_WORKERS: 8
@@ -8,6 +8,7 @@ DATALOADER:
 DATASETS:
   NAMES: MSMT17
   STORE_DIR: ./datasets
+DEVICE: cuda:0
 INPUT:
   PADDING: 10
   PIXEL_MEAN: [0.485, 0.456, 0.406]
@@ -16,9 +17,9 @@ INPUT:
   SIZE_TEST: [384, 128]
   SIZE_TRAIN: [384, 128]
 MODEL:
-  DEVICE: cuda:4
   NAME: ResNet50
 OUTPUT_DIR: ./checkpoint/MSMT17/Softmax_Triplet_BS64
+RE_RANKING: False
 SOLVER:
   BASE_LR: 0.00035
   BIAS_LR_FACTOR: 1
@@ -36,50 +37,156 @@ SOLVER:
 TEST:
   IMS_PER_BATCH: 64
   LOAD_EPOCH: 120
-  RE_RANKING: False
-2019-02-18 12:34:56,078 Reid_Baseline INFO: Start training
-2019-02-18 12:39:42,474 Reid_Baseline INFO: Epoch[1] Iteration[438/449] Loss: 5.164, Acc: 0.260, Base Lr: 3.50e-03
-2019-02-18 12:44:26,602 Reid_Baseline INFO: Epoch[2] Iteration[438/449] Loss: 2.422, Acc: 0.610, Base Lr: 3.50e-04
-2019-02-18 12:49:10,221 Reid_Baseline INFO: Epoch[3] Iteration[439/449] Loss: 1.345, Acc: 0.788, Base Lr: 3.50e-04
-2019-02-18 12:53:50,002 Reid_Baseline INFO: Epoch[4] Iteration[436/449] Loss: 0.960, Acc: 0.856, Base Lr: 3.50e-04
-2019-02-18 12:58:32,074 Reid_Baseline INFO: Epoch[5] Iteration[437/449] Loss: 0.785, Acc: 0.888, Base Lr: 3.50e-04
-2019-02-18 13:03:14,025 Reid_Baseline INFO: Epoch[6] Iteration[436/449] Loss: 0.690, Acc: 0.907, Base Lr: 3.50e-04
-2019-02-18 13:07:56,477 Reid_Baseline INFO: Epoch[7] Iteration[435/449] Loss: 0.604, Acc: 0.923, Base Lr: 3.50e-04
-2019-02-18 13:12:39,464 Reid_Baseline INFO: Epoch[8] Iteration[437/449] Loss: 0.574, Acc: 0.928, Base Lr: 3.50e-04
-2019-02-18 13:17:21,665 Reid_Baseline INFO: Epoch[9] Iteration[436/449] Loss: 0.537, Acc: 0.935, Base Lr: 3.50e-04
-2019-02-18 13:22:04,206 Reid_Baseline INFO: Epoch[10] Iteration[437/449] Loss: 0.528, Acc: 0.936, Base Lr: 3.50e-04
-2019-02-18 13:26:46,675 Reid_Baseline INFO: Epoch[11] Iteration[436/449] Loss: 0.496, Acc: 0.939, Base Lr: 3.50e-04
-2019-02-18 13:31:29,059 Reid_Baseline INFO: Epoch[12] Iteration[437/449] Loss: 0.487, Acc: 0.942, Base Lr: 3.50e-04
-2019-02-18 13:36:11,451 Reid_Baseline INFO: Epoch[13] Iteration[436/449] Loss: 0.483, Acc: 0.942, Base Lr: 3.50e-04
-2019-02-18 13:40:53,230 Reid_Baseline INFO: Epoch[14] Iteration[436/449] Loss: 0.459, Acc: 0.946, Base Lr: 3.50e-04
-2019-02-18 13:45:34,973 Reid_Baseline INFO: Epoch[15] Iteration[436/449] Loss: 0.453, Acc: 0.947, Base Lr: 3.50e-04
-2019-02-18 13:50:16,354 Reid_Baseline INFO: Epoch[16] Iteration[436/449] Loss: 0.423, Acc: 0.953, Base Lr: 3.50e-04
-2019-02-18 13:54:59,092 Reid_Baseline INFO: Epoch[17] Iteration[437/449] Loss: 0.434, Acc: 0.950, Base Lr: 3.50e-04
-2019-02-18 13:59:41,754 Reid_Baseline INFO: Epoch[18] Iteration[438/449] Loss: 0.426, Acc: 0.952, Base Lr: 3.50e-04
-2019-02-18 14:04:24,216 Reid_Baseline INFO: Epoch[19] Iteration[437/449] Loss: 0.411, Acc: 0.955, Base Lr: 3.50e-04
-2019-02-18 14:09:07,287 Reid_Baseline INFO: Epoch[20] Iteration[438/449] Loss: 0.404, Acc: 0.955, Base Lr: 3.50e-04
-2019-02-18 15:22:49,740 Reid_Baseline INFO: Validation Results - Epoch: 20
-2019-02-18 15:22:49,741 Reid_Baseline INFO: mAP: 18.0%
-2019-02-18 15:22:49,741 Reid_Baseline INFO: CMC curve, Rank-1  :42.1%
-2019-02-18 15:22:49,741 Reid_Baseline INFO: CMC curve, Rank-5  :57.5%
-2019-02-18 15:22:49,741 Reid_Baseline INFO: CMC curve, Rank-10 :63.9%
-2019-02-18 15:27:28,695 Reid_Baseline INFO: Epoch[21] Iteration[437/449] Loss: 0.398, Acc: 0.955, Base Lr: 3.50e-04
-2019-02-18 15:32:09,966 Reid_Baseline INFO: Epoch[22] Iteration[437/449] Loss: 0.379, Acc: 0.960, Base Lr: 3.50e-04
-2019-02-18 15:36:51,816 Reid_Baseline INFO: Epoch[23] Iteration[437/449] Loss: 0.388, Acc: 0.957, Base Lr: 3.50e-04
-2019-02-18 15:41:30,734 Reid_Baseline INFO: Epoch[24] Iteration[437/449] Loss: 0.386, Acc: 0.957, Base Lr: 3.50e-04
-2019-02-18 15:46:08,086 Reid_Baseline INFO: Epoch[25] Iteration[437/449] Loss: 0.370, Acc: 0.959, Base Lr: 3.50e-04
-2019-02-18 15:50:46,166 Reid_Baseline INFO: Epoch[26] Iteration[438/449] Loss: 0.364, Acc: 0.961, Base Lr: 3.50e-04
-2019-02-18 15:55:22,892 Reid_Baseline INFO: Epoch[27] Iteration[436/449] Loss: 0.370, Acc: 0.959, Base Lr: 3.50e-04
-2019-02-18 16:00:00,043 Reid_Baseline INFO: Epoch[28] Iteration[437/449] Loss: 0.352, Acc: 0.964, Base Lr: 3.50e-04
-2019-02-18 16:04:36,988 Reid_Baseline INFO: Epoch[29] Iteration[437/449] Loss: 0.368, Acc: 0.961, Base Lr: 3.50e-04
-2019-02-18 16:09:13,889 Reid_Baseline INFO: Epoch[30] Iteration[437/449] Loss: 0.347, Acc: 0.964, Base Lr: 3.50e-04
-2019-02-18 16:13:50,546 Reid_Baseline INFO: Epoch[31] Iteration[437/449] Loss: 0.345, Acc: 0.963, Base Lr: 3.50e-04
-2019-02-18 16:18:27,086 Reid_Baseline INFO: Epoch[32] Iteration[436/449] Loss: 0.335, Acc: 0.966, Base Lr: 3.50e-04
-2019-02-18 16:23:06,894 Reid_Baseline INFO: Epoch[33] Iteration[437/449] Loss: 0.324, Acc: 0.967, Base Lr: 3.50e-04
-2019-02-18 16:27:45,995 Reid_Baseline INFO: Epoch[34] Iteration[435/449] Loss: 0.328, Acc: 0.966, Base Lr: 3.50e-04
-2019-02-18 16:32:26,438 Reid_Baseline INFO: Epoch[35] Iteration[438/449] Loss: 0.329, Acc: 0.967, Base Lr: 3.50e-04
-2019-02-18 16:37:06,070 Reid_Baseline INFO: Epoch[36] Iteration[436/449] Loss: 0.331, Acc: 0.965, Base Lr: 3.50e-04
-2019-02-18 16:41:46,715 Reid_Baseline INFO: Epoch[37] Iteration[438/449] Loss: 0.331, Acc: 0.967, Base Lr: 3.50e-04
-2019-02-18 16:46:26,271 Reid_Baseline INFO: Epoch[38] Iteration[437/449] Loss: 0.325, Acc: 0.967, Base Lr: 3.50e-04
-2019-02-18 16:51:06,112 Reid_Baseline INFO: Epoch[39] Iteration[437/449] Loss: 0.322, Acc: 0.967, Base Lr: 3.50e-04
-2019-02-18 16:55:45,244 Reid_Baseline INFO: Epoch[40] Iteration[436/449] Loss: 0.310, Acc: 0.969, Base Lr: 3.50e-04
+2019-02-19 00:28:57,824 Reid_Baseline INFO: Start training
+2019-02-19 00:33:38,886 Reid_Baseline INFO: Epoch[1] Iteration[436/449] Loss: 5.211, Acc: 0.242, Base Lr: 3.50e-03
+2019-02-19 00:38:20,460 Reid_Baseline INFO: Epoch[2] Iteration[437/449] Loss: 2.550, Acc: 0.584, Base Lr: 3.50e-04
+2019-02-19 00:43:02,183 Reid_Baseline INFO: Epoch[3] Iteration[438/449] Loss: 1.423, Acc: 0.771, Base Lr: 3.50e-04
+2019-02-19 00:47:43,194 Reid_Baseline INFO: Epoch[4] Iteration[436/449] Loss: 1.014, Acc: 0.848, Base Lr: 3.50e-04
+2019-02-19 00:52:23,478 Reid_Baseline INFO: Epoch[5] Iteration[436/449] Loss: 0.806, Acc: 0.886, Base Lr: 3.50e-04
+2019-02-19 00:57:05,550 Reid_Baseline INFO: Epoch[6] Iteration[438/449] Loss: 0.707, Acc: 0.903, Base Lr: 3.50e-04
+2019-02-19 01:01:43,760 Reid_Baseline INFO: Epoch[7] Iteration[433/449] Loss: 0.645, Acc: 0.915, Base Lr: 3.50e-04
+2019-02-19 01:06:23,867 Reid_Baseline INFO: Epoch[8] Iteration[435/449] Loss: 0.576, Acc: 0.929, Base Lr: 3.50e-04
+2019-02-19 01:11:04,958 Reid_Baseline INFO: Epoch[9] Iteration[437/449] Loss: 0.545, Acc: 0.933, Base Lr: 3.50e-04
+2019-02-19 01:15:45,312 Reid_Baseline INFO: Epoch[10] Iteration[436/449] Loss: 0.528, Acc: 0.935, Base Lr: 3.50e-04
+2019-02-19 01:20:27,815 Reid_Baseline INFO: Epoch[11] Iteration[438/449] Loss: 0.501, Acc: 0.940, Base Lr: 3.50e-04
+2019-02-19 01:25:09,769 Reid_Baseline INFO: Epoch[12] Iteration[438/449] Loss: 0.487, Acc: 0.941, Base Lr: 3.50e-04
+2019-02-19 01:29:51,587 Reid_Baseline INFO: Epoch[13] Iteration[437/449] Loss: 0.482, Acc: 0.944, Base Lr: 3.50e-04
+2019-02-19 01:34:32,490 Reid_Baseline INFO: Epoch[14] Iteration[436/449] Loss: 0.461, Acc: 0.948, Base Lr: 3.50e-04
+2019-02-19 01:39:12,667 Reid_Baseline INFO: Epoch[15] Iteration[436/449] Loss: 0.450, Acc: 0.949, Base Lr: 3.50e-04
+2019-02-19 01:43:54,090 Reid_Baseline INFO: Epoch[16] Iteration[437/449] Loss: 0.440, Acc: 0.951, Base Lr: 3.50e-04
+2019-02-19 01:48:34,930 Reid_Baseline INFO: Epoch[17] Iteration[437/449] Loss: 0.427, Acc: 0.952, Base Lr: 3.50e-04
+2019-02-19 01:53:15,824 Reid_Baseline INFO: Epoch[18] Iteration[436/449] Loss: 0.430, Acc: 0.952, Base Lr: 3.50e-04
+2019-02-19 01:57:56,344 Reid_Baseline INFO: Epoch[19] Iteration[436/449] Loss: 0.412, Acc: 0.954, Base Lr: 3.50e-04
+2019-02-19 02:02:37,512 Reid_Baseline INFO: Epoch[20] Iteration[437/449] Loss: 0.399, Acc: 0.957, Base Lr: 3.50e-04
+2019-02-19 03:12:15,694 Reid_Baseline INFO: Validation Results - Epoch: 20
+2019-02-19 03:12:15,694 Reid_Baseline INFO: mAP: 22.8%
+2019-02-19 03:12:15,694 Reid_Baseline INFO: CMC curve, Rank-1  :48.8%
+2019-02-19 03:12:15,694 Reid_Baseline INFO: CMC curve, Rank-5  :65.1%
+2019-02-19 03:12:15,694 Reid_Baseline INFO: CMC curve, Rank-10 :71.7%
+2019-02-19 03:17:00,554 Reid_Baseline INFO: Epoch[21] Iteration[435/449] Loss: 0.398, Acc: 0.957, Base Lr: 3.50e-04
+2019-02-19 03:21:46,564 Reid_Baseline INFO: Epoch[22] Iteration[437/449] Loss: 0.397, Acc: 0.957, Base Lr: 3.50e-04
+2019-02-19 03:26:33,068 Reid_Baseline INFO: Epoch[23] Iteration[437/449] Loss: 0.376, Acc: 0.961, Base Lr: 3.50e-04
+2019-02-19 03:31:21,293 Reid_Baseline INFO: Epoch[24] Iteration[439/449] Loss: 0.381, Acc: 0.958, Base Lr: 3.50e-04
+2019-02-19 03:36:08,940 Reid_Baseline INFO: Epoch[25] Iteration[438/449] Loss: 0.371, Acc: 0.960, Base Lr: 3.50e-04
+2019-02-19 03:40:56,114 Reid_Baseline INFO: Epoch[26] Iteration[438/449] Loss: 0.375, Acc: 0.960, Base Lr: 3.50e-04
+2019-02-19 03:45:42,402 Reid_Baseline INFO: Epoch[27] Iteration[437/449] Loss: 0.365, Acc: 0.961, Base Lr: 3.50e-04
+2019-02-19 03:50:28,164 Reid_Baseline INFO: Epoch[28] Iteration[438/449] Loss: 0.350, Acc: 0.964, Base Lr: 3.50e-04
+2019-02-19 03:55:15,130 Reid_Baseline INFO: Epoch[29] Iteration[437/449] Loss: 0.347, Acc: 0.964, Base Lr: 3.50e-04
+2019-02-19 04:00:00,076 Reid_Baseline INFO: Epoch[30] Iteration[436/449] Loss: 0.352, Acc: 0.964, Base Lr: 3.50e-04
+2019-02-19 04:04:46,761 Reid_Baseline INFO: Epoch[31] Iteration[437/449] Loss: 0.354, Acc: 0.963, Base Lr: 3.50e-04
+2019-02-19 04:09:34,449 Reid_Baseline INFO: Epoch[32] Iteration[437/449] Loss: 0.336, Acc: 0.967, Base Lr: 3.50e-04
+2019-02-19 04:14:21,106 Reid_Baseline INFO: Epoch[33] Iteration[437/449] Loss: 0.348, Acc: 0.961, Base Lr: 3.50e-04
+2019-02-19 04:19:05,467 Reid_Baseline INFO: Epoch[34] Iteration[436/449] Loss: 0.340, Acc: 0.965, Base Lr: 3.50e-04
+2019-02-19 04:23:51,339 Reid_Baseline INFO: Epoch[35] Iteration[436/449] Loss: 0.329, Acc: 0.966, Base Lr: 3.50e-04
+2019-02-19 04:28:35,202 Reid_Baseline INFO: Epoch[36] Iteration[436/449] Loss: 0.322, Acc: 0.968, Base Lr: 3.50e-04
+2019-02-19 04:33:21,797 Reid_Baseline INFO: Epoch[37] Iteration[438/449] Loss: 0.322, Acc: 0.966, Base Lr: 3.50e-04
+2019-02-19 04:38:06,186 Reid_Baseline INFO: Epoch[38] Iteration[436/449] Loss: 0.330, Acc: 0.965, Base Lr: 3.50e-04
+2019-02-19 04:42:52,291 Reid_Baseline INFO: Epoch[39] Iteration[437/449] Loss: 0.319, Acc: 0.967, Base Lr: 3.50e-04
+2019-02-19 04:47:37,370 Reid_Baseline INFO: Epoch[40] Iteration[437/449] Loss: 0.333, Acc: 0.964, Base Lr: 3.50e-04
+2019-02-19 05:55:41,439 Reid_Baseline INFO: Validation Results - Epoch: 40
+2019-02-19 05:55:41,440 Reid_Baseline INFO: mAP: 25.3%
+2019-02-19 05:55:41,440 Reid_Baseline INFO: CMC curve, Rank-1  :52.6%
+2019-02-19 05:55:41,441 Reid_Baseline INFO: CMC curve, Rank-5  :68.7%
+2019-02-19 05:55:41,441 Reid_Baseline INFO: CMC curve, Rank-10 :74.8%
+2019-02-19 06:00:25,699 Reid_Baseline INFO: Epoch[41] Iteration[436/449] Loss: 0.327, Acc: 0.965, Base Lr: 3.50e-04
+2019-02-19 06:05:10,245 Reid_Baseline INFO: Epoch[42] Iteration[435/449] Loss: 0.240, Acc: 0.974, Base Lr: 3.50e-05
+2019-02-19 06:09:52,941 Reid_Baseline INFO: Epoch[43] Iteration[437/449] Loss: 0.153, Acc: 0.991, Base Lr: 3.50e-05
+2019-02-19 06:14:36,037 Reid_Baseline INFO: Epoch[44] Iteration[436/449] Loss: 0.134, Acc: 0.992, Base Lr: 3.50e-05
+2019-02-19 06:19:20,567 Reid_Baseline INFO: Epoch[45] Iteration[437/449] Loss: 0.122, Acc: 0.994, Base Lr: 3.50e-05
+2019-02-19 06:24:05,666 Reid_Baseline INFO: Epoch[46] Iteration[438/449] Loss: 0.116, Acc: 0.994, Base Lr: 3.50e-05
+2019-02-19 06:28:50,401 Reid_Baseline INFO: Epoch[47] Iteration[439/449] Loss: 0.111, Acc: 0.995, Base Lr: 3.50e-05
+2019-02-19 06:33:35,140 Reid_Baseline INFO: Epoch[48] Iteration[436/449] Loss: 0.111, Acc: 0.994, Base Lr: 3.50e-05
+2019-02-19 06:38:20,323 Reid_Baseline INFO: Epoch[49] Iteration[437/449] Loss: 0.105, Acc: 0.995, Base Lr: 3.50e-05
+2019-02-19 06:43:03,676 Reid_Baseline INFO: Epoch[50] Iteration[437/449] Loss: 0.104, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 06:47:46,973 Reid_Baseline INFO: Epoch[51] Iteration[438/449] Loss: 0.108, Acc: 0.995, Base Lr: 3.50e-05
+2019-02-19 06:52:28,883 Reid_Baseline INFO: Epoch[52] Iteration[436/449] Loss: 0.109, Acc: 0.995, Base Lr: 3.50e-05
+2019-02-19 06:57:11,575 Reid_Baseline INFO: Epoch[53] Iteration[436/449] Loss: 0.107, Acc: 0.995, Base Lr: 3.50e-05
+2019-02-19 07:01:53,982 Reid_Baseline INFO: Epoch[54] Iteration[438/449] Loss: 0.105, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 07:06:39,644 Reid_Baseline INFO: Epoch[55] Iteration[438/449] Loss: 0.101, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 07:11:25,559 Reid_Baseline INFO: Epoch[56] Iteration[438/449] Loss: 0.102, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 07:16:10,178 Reid_Baseline INFO: Epoch[57] Iteration[436/449] Loss: 0.107, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 07:20:56,697 Reid_Baseline INFO: Epoch[58] Iteration[437/449] Loss: 0.104, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 07:25:41,431 Reid_Baseline INFO: Epoch[59] Iteration[437/449] Loss: 0.101, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 07:30:25,872 Reid_Baseline INFO: Epoch[60] Iteration[438/449] Loss: 0.093, Acc: 0.998, Base Lr: 3.50e-05
+2019-02-19 08:39:15,760 Reid_Baseline INFO: Validation Results - Epoch: 60
+2019-02-19 08:39:15,761 Reid_Baseline INFO: mAP: 42.6%
+2019-02-19 08:39:15,761 Reid_Baseline INFO: CMC curve, Rank-1  :70.2%
+2019-02-19 08:39:15,761 Reid_Baseline INFO: CMC curve, Rank-5  :83.3%
+2019-02-19 08:39:15,761 Reid_Baseline INFO: CMC curve, Rank-10 :87.3%
+2019-02-19 08:44:01,856 Reid_Baseline INFO: Epoch[61] Iteration[437/449] Loss: 0.098, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 08:48:46,693 Reid_Baseline INFO: Epoch[62] Iteration[438/449] Loss: 0.099, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 08:53:24,091 Reid_Baseline INFO: Epoch[63] Iteration[436/449] Loss: 0.098, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 08:58:08,122 Reid_Baseline INFO: Epoch[64] Iteration[436/449] Loss: 0.095, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:02:55,292 Reid_Baseline INFO: Epoch[65] Iteration[438/449] Loss: 0.094, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:07:41,113 Reid_Baseline INFO: Epoch[66] Iteration[439/449] Loss: 0.097, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:12:26,945 Reid_Baseline INFO: Epoch[67] Iteration[437/449] Loss: 0.095, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:17:12,929 Reid_Baseline INFO: Epoch[68] Iteration[437/449] Loss: 0.091, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:21:57,493 Reid_Baseline INFO: Epoch[69] Iteration[438/449] Loss: 0.091, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:26:41,426 Reid_Baseline INFO: Epoch[70] Iteration[435/449] Loss: 0.091, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:31:24,380 Reid_Baseline INFO: Epoch[71] Iteration[437/449] Loss: 0.092, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 09:36:03,280 Reid_Baseline INFO: Epoch[72] Iteration[437/449] Loss: 0.090, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:40:40,557 Reid_Baseline INFO: Epoch[73] Iteration[436/449] Loss: 0.090, Acc: 0.996, Base Lr: 3.50e-05
+2019-02-19 09:45:17,270 Reid_Baseline INFO: Epoch[74] Iteration[436/449] Loss: 0.088, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:49:53,718 Reid_Baseline INFO: Epoch[75] Iteration[436/449] Loss: 0.087, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:54:31,457 Reid_Baseline INFO: Epoch[76] Iteration[437/449] Loss: 0.088, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 09:59:09,678 Reid_Baseline INFO: Epoch[77] Iteration[438/449] Loss: 0.085, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 10:03:46,682 Reid_Baseline INFO: Epoch[78] Iteration[436/449] Loss: 0.087, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 10:08:25,696 Reid_Baseline INFO: Epoch[79] Iteration[439/449] Loss: 0.086, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 10:13:03,506 Reid_Baseline INFO: Epoch[80] Iteration[436/449] Loss: 0.085, Acc: 0.997, Base Lr: 3.50e-05
+2019-02-19 11:24:43,460 Reid_Baseline INFO: Validation Results - Epoch: 80
+2019-02-19 11:24:43,461 Reid_Baseline INFO: mAP: 43.8%
+2019-02-19 11:24:43,461 Reid_Baseline INFO: CMC curve, Rank-1  :71.9%
+2019-02-19 11:24:43,461 Reid_Baseline INFO: CMC curve, Rank-5  :84.3%
+2019-02-19 11:24:43,461 Reid_Baseline INFO: CMC curve, Rank-10 :88.2%
+2019-02-19 11:29:19,823 Reid_Baseline INFO: Epoch[81] Iteration[436/449] Loss: 0.081, Acc: 0.998, Base Lr: 3.50e-05
+2019-02-19 11:33:57,620 Reid_Baseline INFO: Epoch[82] Iteration[437/449] Loss: 0.076, Acc: 0.997, Base Lr: 3.50e-06
+2019-02-19 11:38:33,674 Reid_Baseline INFO: Epoch[83] Iteration[435/449] Loss: 0.073, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 11:43:10,326 Reid_Baseline INFO: Epoch[84] Iteration[437/449] Loss: 0.072, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 11:47:47,641 Reid_Baseline INFO: Epoch[85] Iteration[437/449] Loss: 0.071, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 11:52:25,199 Reid_Baseline INFO: Epoch[86] Iteration[437/449] Loss: 0.071, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 11:57:02,557 Reid_Baseline INFO: Epoch[87] Iteration[437/449] Loss: 0.071, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:01:40,086 Reid_Baseline INFO: Epoch[88] Iteration[438/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:06:16,215 Reid_Baseline INFO: Epoch[89] Iteration[437/449] Loss: 0.068, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:10:52,811 Reid_Baseline INFO: Epoch[90] Iteration[437/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:15:30,404 Reid_Baseline INFO: Epoch[91] Iteration[438/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:20:06,051 Reid_Baseline INFO: Epoch[92] Iteration[436/449] Loss: 0.068, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:24:42,247 Reid_Baseline INFO: Epoch[93] Iteration[437/449] Loss: 0.067, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:29:18,026 Reid_Baseline INFO: Epoch[94] Iteration[436/449] Loss: 0.067, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:33:54,228 Reid_Baseline INFO: Epoch[95] Iteration[437/449] Loss: 0.067, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:38:30,301 Reid_Baseline INFO: Epoch[96] Iteration[436/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:43:07,887 Reid_Baseline INFO: Epoch[97] Iteration[439/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:47:44,697 Reid_Baseline INFO: Epoch[98] Iteration[438/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:52:22,000 Reid_Baseline INFO: Epoch[99] Iteration[438/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 12:56:59,024 Reid_Baseline INFO: Epoch[100] Iteration[438/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:10:25,102 Reid_Baseline INFO: Validation Results - Epoch: 100
+2019-02-19 14:10:25,102 Reid_Baseline INFO: mAP: 46.2%
+2019-02-19 14:10:25,103 Reid_Baseline INFO: CMC curve, Rank-1  :73.7%
+2019-02-19 14:10:25,103 Reid_Baseline INFO: CMC curve, Rank-5  :85.8%
+2019-02-19 14:10:25,103 Reid_Baseline INFO: CMC curve, Rank-10 :89.4%
+2019-02-19 14:15:02,424 Reid_Baseline INFO: Epoch[101] Iteration[437/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:19:38,481 Reid_Baseline INFO: Epoch[102] Iteration[436/449] Loss: 0.064, Acc: 0.999, Base Lr: 3.50e-06
+2019-02-19 14:24:13,270 Reid_Baseline INFO: Epoch[103] Iteration[435/449] Loss: 0.063, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:28:50,775 Reid_Baseline INFO: Epoch[104] Iteration[438/449] Loss: 0.063, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:33:29,385 Reid_Baseline INFO: Epoch[105] Iteration[438/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:38:07,323 Reid_Baseline INFO: Epoch[106] Iteration[437/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:42:44,230 Reid_Baseline INFO: Epoch[107] Iteration[436/449] Loss: 0.063, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:47:22,270 Reid_Baseline INFO: Epoch[108] Iteration[438/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:52:01,728 Reid_Baseline INFO: Epoch[109] Iteration[438/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 14:56:39,517 Reid_Baseline INFO: Epoch[110] Iteration[436/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:01:20,425 Reid_Baseline INFO: Epoch[111] Iteration[436/449] Loss: 0.061, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:06:02,049 Reid_Baseline INFO: Epoch[112] Iteration[437/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:10:43,165 Reid_Baseline INFO: Epoch[113] Iteration[436/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:15:25,123 Reid_Baseline INFO: Epoch[114] Iteration[437/449] Loss: 0.065, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:20:06,205 Reid_Baseline INFO: Epoch[115] Iteration[436/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:24:48,848 Reid_Baseline INFO: Epoch[116] Iteration[438/449] Loss: 0.063, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:29:30,106 Reid_Baseline INFO: Epoch[117] Iteration[437/449] Loss: 0.064, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:34:11,357 Reid_Baseline INFO: Epoch[118] Iteration[437/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:38:52,213 Reid_Baseline INFO: Epoch[119] Iteration[437/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 15:43:32,449 Reid_Baseline INFO: Epoch[120] Iteration[436/449] Loss: 0.066, Acc: 0.998, Base Lr: 3.50e-06
+2019-02-19 16:55:56,183 Reid_Baseline INFO: Validation Results - Epoch: 120
+2019-02-19 16:55:56,183 Reid_Baseline INFO: mAP: 46.4%
+2019-02-19 16:55:56,183 Reid_Baseline INFO: CMC curve, Rank-1  :73.9%
+2019-02-19 16:55:56,183 Reid_Baseline INFO: CMC curve, Rank-5  :85.9%
+2019-02-19 16:55:56,184 Reid_Baseline INFO: CMC curve, Rank-10 :89.6%
+2019-02-19 16:55:56,184 Reid_Baseline INFO: Training complete in 986m 58s
+2019-02-19 16:55:56,184 Reid_Baseline INFO: ----------
