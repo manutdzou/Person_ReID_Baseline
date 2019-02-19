@@ -49,10 +49,7 @@ def train(config_file, **kwargs):
      
     train_loader, val_loader, num_query, num_classes = data_loader(cfg,cfg.DATASETS.NAMES)
 
-    model = getattr(models, cfg.MODEL.NAME)(num_classes)
-    if device:
-        model.to(device)
-    model.train()
+    model = getattr(models, cfg.MODEL.NAME)(num_classes)        
     optimizer = make_optimizer(cfg, model)
     scheduler = make_scheduler(cfg,optimizer)
     loss_fn = make_loss(cfg)
@@ -64,9 +61,11 @@ def train(config_file, **kwargs):
         running_loss = 0.0
         running_acc = 0
         for data in tqdm(train_loader, desc='Iteration', leave=False):
+            model.train()
             images, labels = data
 
             if device:
+                model.to(device)
                 images, labels = images.to(device), labels.to(device)
 
             optimizer.zero_grad()
@@ -89,6 +88,7 @@ def train(config_file, **kwargs):
         scheduler.step()
 
         if (epoch+1) % checkpoint_period == 0:
+            model.cpu()
             model.save(output_dir,epoch+1)
 
         # Validation
