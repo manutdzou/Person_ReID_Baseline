@@ -16,11 +16,12 @@ pip3 install -r requirements.txt
 ```
 
 ## Configs
-Use different yaml config files for different experiment settings. Please use different `OUTPUT_DIR` names for different experiments to avoid conflit and accidentally files overwritten.
+
+Use different yaml config files for different experiment settings. All the config files are store in folder `config`. Please use different `OUTPUT_DIR` names for different experiments to avoid conflit and accidentally files overwritten.
 
 
 ## Datasets
-This code support CUHK03, Market1501, DukeMTMC and MSMT17 datasets. All these dataset should be defined in the `DATASETS.NAMES` of the config file, our code will be download the corresponding dataset automatically (into the `datasets` folder).
+This code support CUHK03, Market1501, DukeMTMC and MSMT17 datasets. All these dataset should be defined in the `DATASETS.NAMES` of the config file, our code will be download the corresponding dataset automatically (into the `datasets` folder). As this fuction require access to __Google Drive__, it will not work in China. 
 Currently support:
 * [CUHK03](http://www.ee.cuhk.edu.hk/~xgwang/CUHK_identification.html)
 * [Market1501](http://www.liangzheng.org/Project/project_reid.html)
