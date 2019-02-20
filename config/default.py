@@ -24,6 +24,15 @@ _C.INPUT.PIXEL_STD = [0.229, 0.224, 0.225]
 # Value of padding size
 _C.INPUT.PADDING = 10
 
+# Value of colorjitter brightness
+_C.INPUT.BRIGHTNESS = 0.0
+# Value of colorjitter contrast
+_C.INPUT.CONTRAST = 0.0
+# Value of colorjitter saturation
+_C.INPUT.SATURATION = 0.0
+# Value of colorjitter hue
+_C.INPUT.HUE = 0.0
+
 # -----------------------------------------------------------------------------
 # Dataset
 # -----------------------------------------------------------------------------
