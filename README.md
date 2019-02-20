@@ -150,7 +150,7 @@ python test_cross_dataset.py ./config/market_softmax.yaml DukeMTMC
 │    
 └── test.py                 - here's the test the network performance   
 │
-└── test_cross_dataset.pu	- test the performance in cross-dataset scenario
+└── test_cross_dataset.py	- test the performance in cross-dataset scenario
 ```
 
 ## Issues
